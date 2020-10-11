@@ -1,0 +1,19 @@
+{% extends 'base.html' %} {%load static %}{% block content %}{%if movies%}
+<h5 style="margin-left:1rem;">Now Watch Your Favorite Movie</h5> <br>
+<div class="ml-2" style="display: flex;">
+    {% for movie in movies %}
+    <div class="card" style="width: 18rem;margin-left:1rem;">
+        <div class="card-body">
+            <img src="{% static 'img/default.jpg' %}" class="card-img-top" alt={{movie.name}} width="100%">
+        </div>
+
+        <a href="{%url 'movie' pk=movie.pk%}">
+            <div class="card-body">
+               <h1 style="text-align: center;" class="card-title">{{movie.name}}</h1>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+
+{%endif%} {% endblock %}

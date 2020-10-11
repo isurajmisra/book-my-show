@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {%load static %}{% block content %}{%if theaters%}
+<h5 style="margin-left:1rem;">Select Your Favorite Theater:{{movie.name}}</h5> <br>
+<div class="ml-2" style="display: flex;">
+    {% for theater in theaters %}
+    <div class="card" style="width: 18rem;margin-left:1rem;">
+        <div class="card-body">
+            <h1 style="text-align: center;" class="card-title">{{theater.name}}</h1>
+            <p style="text-align: center;" class="card-title">{{theater.location}}</p>
+        </div>
+
+        <div class="card-body">
+
+            {%if timings%}
+                <form  method="post" action="{% url 'order'%}">
+                    {% csrf_token %}
+                    <input type="hidden" name="movie" value="{{movie.pk}}">
+                    <input type="hidden" name="theater" value="{{theater.pk}}">
+                    <select name="select-timing" style="display:block;">
+                        <option>Select Show</option>
+                        {% for timing in timings %}
+                            {%if theater in timing.theater.all  %}
+                                <option value="{{timing.pk}}">{{timing.start_time}} &nbsp;{{timing.end_time}}</option>
+                            {%endif%}
+                        {% endfor %}
+                    </select>
+
+                    <select name="select-seat" style="display:block;">
+                        <option>Select Seat</option>
+                        {% for key, value in available_seats.items %}
+
+                            {% for seat in value %}
+                        {%if theater.name == key%}
+                                <option value="{{seat}}">{{seat}}</option>
+                        {%endif%}
+                        {% endfor %}
+                         {% endfor %}
+                    </select>
+
+                    <button type="submit">Book</button>
+                </form>
+            {%endif%}
+
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{%endif%} {% endblock %}

@@ -1,0 +1,24 @@
+{%extends 'base.html' %}{% load static %}{% block content %}
+<div class="container">
+    <img class="circle  responsive-img  dude-pic" src="{% static 'img/user.jpg'%}" alt="">
+    <h3>{{request.user.username}}</h3>
+    <p>{{request.user.email}}</p>
+    <br> {%if orders%}
+    <div>
+        <h4>Your Booked Shows:</h4>
+        <ul class="collection">
+            {%for order in orders%}
+            <li class="collection-item ">
+                <span class="title"><h4>{{order.movie.name}} </h4>
+                <p>Theater Name : {{order.theater.name}} </p>
+                <p>Seat Number: {{order.seat_number}} </p>
+                <p>Booking Code : {{order.code}} </p>
+                <p>Show Time : {{order.timing.start_time}} &nbsp; - &nbsp; {{order.timing.end_time}}</p>
+                </span>
+            </li>
+            {%endfor%}
+        </ul>
+    </div>
+
+</div>
+{%endif%} {% endblock %}
