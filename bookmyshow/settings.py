@@ -25,7 +25,7 @@ SECRET_KEY = '-)#54u$0f=6ov=%@rx!!_l#ny9wc!t#t_ps^h8)fghjn8ny#^('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'bookmyshow-square-boat.herokuapp.com']
 
 
 # Application definition
