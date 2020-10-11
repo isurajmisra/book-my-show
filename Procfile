@@ -1,1 +1,1 @@
-web: python manage.py runserver 52.30.217.135:$PORT
+web: python manage.py runserver 0.0.0.0:$PORT
